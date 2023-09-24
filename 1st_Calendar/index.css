@@ -1,0 +1,27 @@
+:root {
+    --light-gray : #dadce0;
+    --light-blue : #1b9ce2;
+}
+body{
+    height: 100vh;
+}
+
+#app-calendar{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    height: 100%;
+}
+
+.day{
+    text-align: center;
+    border: 1px solid var(--light-gray);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weekEnd{
+    background-color: aqua;
+}
