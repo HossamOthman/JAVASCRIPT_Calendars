@@ -18,10 +18,19 @@ body{
     border: 1px solid var(--light-gray);
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .weekEnd{
-    background-color: aqua;
+    color: #09e
+}
+.day> p{
+    margin: 0;
+    padding: 15px;
+    font-size: large;
+}
+.day > .dayName {
+    padding-top: 10px;
 }
