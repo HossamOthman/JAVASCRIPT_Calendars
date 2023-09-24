@@ -18,3 +18,9 @@ for(let day = 1; day <= 31; day++) {
 
 calendar.insertAdjacentHTML("beforeend", `<div class="day ${weekEnd ? 'weekEnd' : ''}">${nameOfDay}<p>${day}</p></div>`);
 }
+
+document.querySelectorAll('#app-calendar .day').forEach( day => {
+    day.addEventListener('click', event => {
+        event.currentTarget.classList.toggle('selected')
+    });
+});
