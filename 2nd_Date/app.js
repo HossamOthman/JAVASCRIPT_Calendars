@@ -14,7 +14,7 @@ year.innerHTML = today.getFullYear();
 
 
 ///////////////////////////////////////
-
+// Clock
 
     function showTime(){
         'use strict';
@@ -31,3 +31,35 @@ window.onload = function () {
 
     setInterval(showTime, 1000)
 }
+
+///////////////////////////////////////
+// Countdown Timer
+
+let countdownDate = new Date('Mon Oct 20 2025 23:30:42').getTime();
+
+let counter = setInterval(() => {
+    // get current date
+    let dateNow = new Date().getTime();
+
+    // difference bt now and countdown date
+    let dateDiff = countdownDate - dateNow;
+
+    // get time units
+    let days = Math.floor(dateDiff / (1000 * 60 * 60 * 24));
+    document.querySelector('.days').innerHTML = days < 10 ? `0${days}` : days;
+
+    let hours = Math.floor((dateDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.querySelector('.hours').innerHTML = hours < 10 ? `0${hours}` : hours;
+
+    let minutes = Math.floor((dateDiff % (1000 * 60 * 60)) / (1000 * 60));
+    document.querySelector('.minutes').innerHTML = minutes  < 10 ? `0${minutes}` : minutes;
+
+    let seconds = Math.floor((dateDiff % (1000 * 60)) / 1000);
+    document.querySelector('.seconds').innerHTML = seconds < 10 ? `0${seconds}` : seconds;
+
+    if (dateDiff <= 0){
+        clearInterval(counter);
+        alert('reset timer from app.js')
+    }
+
+}, 1000)

@@ -4,6 +4,12 @@
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 }
+h2{
+    margin: 40px auto 10px;
+    color: whitesmoke;
+    font-size: 55px;
+    text-align: center;
+}
 
 .hero{
     width: 100%;
@@ -40,13 +46,36 @@
 #date{
     font-size: 75px;
 }
-
+#year{
+    padding-top: 10px;
+    margin-bottom: -10px;
+    font-size: 55px;
+}
 /* clock */
 #clock{
-    height: 100px;
     font-size: xx-large;
     display: flex;
     justify-content: center;
     align-items: center;
     color: whitesmoke;
+}
+
+/* Countdown Timer */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+}
+.countdown-container > div {
+    height: 100px;
+    width: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+}
+.countdown-container > div > span:first-child{
+    font-size: xx-large;
 }
