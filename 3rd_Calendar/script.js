@@ -75,3 +75,34 @@ const month_names = [
     }
   };
   
+  let month_list = calendar.querySelector('.month-list');
+  month_names.forEach((e, index) => {
+    let month = document.createElement('div');
+    month.innerHTML = `<div>${e}</div>`;
+    month_list.append(month);
+    month.onclick = () => {
+        currentMonth.value = index;
+        generateCalendar(currentMonth.value, currentYear.value);
+        month_list.classList.replace('show', 'hide');
+        dayTextFormat.classList.remove('hideTime');
+        dayTextFormat.classList.add('showtime');
+        timeFormat.classList.remove('hideTime');
+        timeFormat.classList.add('showtime');
+        dateFormat.classList.remove('hideTime');
+        dateFormat.classList.add('showtime');
+    };
+  });
+
+  (function () {
+    month_list.classList.add('hideonce');
+  })();
+
+  document.querySelector('#pre-year').onclick = () => {
+    --currentYear.value;
+    generateCalendar(currentMonth.value, currentYear.value);
+  };
+
+  document.querySelector('#next-year').onclick = () => {
+    ++currentYear.value;
+    generateCalendar(currentMonth.value, currentYear.value);
+  };
