@@ -65,7 +65,7 @@ const month_names = [
     for (let i = 0; i<=days_of_month[month] + first_day.getDay() - 1; i++) {
         let day = document.createElement('div');
         if(i >= first_day.getDay()) {
-            day.innerHTML = i - first_day.getDay();
+            day.innerHTML = i - first_day.getDay() + 1;
             if(i - first_day.getDay() + 1 === currentDate.getDate() && 
                 year === currentDate.getFullYear() && month === currentDate.getMonth()) {
                     day.classList.add('current-date');
@@ -106,3 +106,41 @@ const month_names = [
     ++currentYear.value;
     generateCalendar(currentMonth.value, currentYear.value);
   };
+
+  let currentDate = new Date();
+  let currentMonth = {value: currentDate.getMonth()};
+  let currentYear = {value: currentDate.getFullYear()};
+  generateCalendar(currentMonth.value, currentYear.value);
+
+  const todayShowTime = document.querySelector('.time-format');
+  const todayShowDate = document.querySelector('.date-format');
+
+  const currentShowDATE = new Date();
+  const showCurrentDateOption = {
+    year : 'numeric',
+    month : 'long',
+    day : 'numeric',
+    weekday : 'long'
+  };
+  const currentDateFormat = new Intl.DateTimeFormat(
+    'en-US',
+    showCurrentDateOption
+  ).format(currentShowDATE);
+  todayShowDate.textContent = currentDateFormat;
+setInterval(() => {
+    const timer = new Date();
+    const option = {
+        hour : 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    };
+    const formatTimer = new Intl.DateTimeFormat('en-us', option).format(timer);
+    let time = `${`${timer.getHours()}`.padStart(
+        2,
+        '0'
+      )}:${`${timer.getMinutes()}`.padStart(
+        2,
+        '0'
+      )}: ${`${timer.getSeconds()}`.padStart(2, '0')}`;
+      todayShowTime.textContent = formatTimer;
+    }, 1000);
