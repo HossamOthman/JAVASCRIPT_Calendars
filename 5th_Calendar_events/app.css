@@ -17,9 +17,32 @@ body {
     flex-direction: column;
     align-items: center;
 }
+.header{
+    padding: 15px
+}
+.header div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    width: 100%;
+}
+.header div button{
+    font-size: xx-large;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: burlywood;
+}
+#month{
+    font-size: x-large;
+    color: burlywood;
+}
 .header h1{
     margin: 30px auto;
     font-size: 52px;
+    text-align: center;
     letter-spacing: 5px;
     color: burlywood;
 }
@@ -33,6 +56,9 @@ body {
     width: 150px;
     height: 150px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: burlywood;
     border-radius: 3px;
     cursor: pointer;
@@ -42,10 +68,13 @@ body {
     background-color: rgb(204, 157, 95);
 }
 .day-text{
-
+    color: #81312e;
 }
 .day-number{
-
+    font-size: 42px;
+    text-align: center;
+    font-weight: 550;
+    color: #81312eda;
 }
 .event-name{
 
