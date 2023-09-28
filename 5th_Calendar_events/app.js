@@ -17,6 +17,20 @@ const months = [
   ];
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  const STORYBLOK_URL = 'https://api-us.storyblok.com/v2/cdn/stories?starts_with=events&token=<key>'
+  let events;
+  const loadEvents = async () => {
+    const res = await fetch(STORYBLOK_URL);
+    const data = await res.json();
+    const stories = data.stories;
+    events = stories.reduce((acc, event) => {
+        const eventTime = new Date(event.content.time);
+        const eventDate = new Date(eventTime.toDateString());
+        acc[eventDate] = event.content;
+        return acc;
+    }, {})
+  };
+  loadEvents();
   const today = new Date();
   let currentMonth = today.getMonth();
   let currentYear = today.getFullYear();
