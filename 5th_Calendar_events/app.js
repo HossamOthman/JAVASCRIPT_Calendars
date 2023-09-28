@@ -19,18 +19,18 @@ const months = [
 
   const STORYBLOK_URL = 'https://api-us.storyblok.com/v2/cdn/stories?starts_with=events&token=<key>'
   let events;
-  const loadEvents = async () => {
-    const res = await fetch(STORYBLOK_URL);
-    const data = await res.json();
-    const stories = data.stories;
-    events = stories.reduce((acc, event) => {
-        const eventTime = new Date(event.content.time);
-        const eventDate = new Date(eventTime.toDateString());
-        acc[eventDate] = event.content;
-        return acc;
-    }, {})
-  };
-  loadEvents();
+//   const loadEvents = async () => {
+//     const res = await fetch(STORYBLOK_URL);
+//     const data = await res.json();
+//     const stories = data.stories;
+//     events = stories.reduce((acc, event) => {
+//         const eventTime = new Date(event.content.time);
+//         const eventDate = new Date(eventTime.toDateString());
+//         acc[eventDate] = event.content;
+//         return acc;
+//     }, {})
+//   };
+//   loadEvents();
   const today = new Date();
   let currentMonth = today.getMonth();
   let currentYear = today.getFullYear();
@@ -76,6 +76,16 @@ const updateCalendar = (month, year, events) => {
 
         const dayNumber = day.querySelector('.day-number');
         if( i >= theFirstDayOfWeek && dayCounter < daysInMonth) {
+
+            const eventName = day.querySelector('.event-name');
+            const thisDate = new Date(year, month, dayCounter);
+            if(events[thisDate]) {
+                const event = events[thisDate];
+                eventName.innerText = `* ${event.title}`
+            } else {
+                eventName.innerText = ''
+            }
+
             dayNumber.innerText = dayCounter;
             dayCounter++;
         } else {
@@ -89,15 +99,21 @@ const previousMonth = () => {
         currentMonth = 12;
         currentYear--
     }
-    updateCalendar(--currentMonth, currentYear)
+    updateCalendar(--currentMonth, currentYear, events)
 }
 const nextMonth = () => {
     if (currentMonth == 11) {
         currentMonth = -1;
         currentYear++
     }
-    updateCalendar(++currentMonth, currentYear)
+    updateCalendar(++currentMonth, currentYear, events)
 }
 
-drawBlankCalendar();
-updateCalendar(currentMonth, currentYear);
+const loadIntoCalendar = async () => {
+    // await loadEvents(); 
+    drawBlankCalendar();
+    updateCalendar(currentMonth, currentYear, events);
+
+}
+
+loadIntoCalendar();
