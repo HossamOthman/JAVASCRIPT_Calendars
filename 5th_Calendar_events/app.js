@@ -70,6 +70,20 @@ const updateCalendar = (month, year, events) => {
     }
 }
 
+const previousMonth = () => {
+    if (currentMonth == 0) {
+        currentMonth = 12;
+        currentYear--
+    }
+    updateCalendar(--currentMonth, currentYear)
+}
+const nextMonth = () => {
+    if (currentMonth == 11) {
+        currentMonth = -1;
+        currentYear++
+    }
+    updateCalendar(++currentMonth, currentYear)
+}
 
 drawBlankCalendar();
 updateCalendar(currentMonth, currentYear);
