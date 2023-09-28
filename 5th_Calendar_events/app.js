@@ -1,5 +1,19 @@
 const calendar = document.getElementById('calendar');
-
+const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 
 const drawBlankCalendar =  () => {
@@ -22,4 +36,19 @@ const drawBlankCalendar =  () => {
         calendar.appendChild(day)
     }
 };
+
+const updateCalendar = (month, year, events) => {
+    const dayElements = document.querySelectorAll('.day');
+
+    const theFirstDate = new Date();
+    theFirstDate.setMonth(month);
+    theFirstDate.setYear(year);
+
+    const theFirstDayOfWeek = theFirstDate.getDay();
+    const monthName = month[month];
+    const monthWithYear = `${year} - ${year}`;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+}
+
+
 drawBlankCalendar();
