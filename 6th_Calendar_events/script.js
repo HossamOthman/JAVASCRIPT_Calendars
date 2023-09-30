@@ -7,9 +7,14 @@ const calendar = document.getElementById('calendar');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 load();
+initBtns();
 
 function load(){
 const dt = new Date();
+
+if (nav !== 0){
+    dt.setMonth(new Date().getMonth() + nav);
+}
 
 const day = dt.getDate();
 const month = dt.getMonth();
@@ -25,6 +30,10 @@ const dateString = firstDayOfMonth.toLocaleDateString('en-US', {
     day: 'numeric'
 });
 const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+document.getElementById('monthDisplay').innerText =
+ `${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`;
+
+ calendar.innerHTML = '';
 
 for(let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daysSquare = document.createElement('div');
@@ -38,4 +47,15 @@ for(let i = 1; i <= paddingDays + daysInMonth; i++) {
     }
     calendar.appendChild(daysSquare);
 }
+}
+
+function initBtns() {
+document.getElementById('nextBtn').addEventListener('click', () => {
+    nav++;
+    load();
+});
+document.getElementById('backBtn').addEventListener('click', () => {
+    nav--;
+    load();
+});
 }
