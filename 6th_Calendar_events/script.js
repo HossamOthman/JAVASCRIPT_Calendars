@@ -7,6 +7,7 @@ const calendar = document.getElementById('calendar');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const newEventModal = document.getElementById('newEventModal');
+const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 
@@ -78,6 +79,9 @@ document.getElementById('backBtn').addEventListener('click', () => {
  
 document.getElementById('saveButton').addEventListener('click', saveEvent);
 document.getElementById('cancelButton').addEventListener('click', closeModal);
+
+document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+document.getElementById('closeButton').addEventListener('click', closeModal);
 }
 function openModal(date){
     clicked = date;
@@ -85,7 +89,8 @@ function openModal(date){
     const eventForDay = events.find(e => e.date === clicked);
 
     if (eventForDay) {
-        console.log('Event lready exists')
+        document.getElementById('eventText').innerText = eventForDay.title;
+        deleteEventModal.style.display = 'block';
     } else {
         newEventModal.style.display = 'block';
     }
@@ -96,6 +101,7 @@ function openModal(date){
 function closeModal() {
     eventTitleInput.classList.remove('error');
     newEventModal.style.display = 'none';
+    deleteEventModal.style.display = 'none';
     backDrop.style.display = 'none';
     eventTitleInput.value = '';
     clicked = null;
@@ -117,4 +123,10 @@ function saveEvent() {
     } else {
         eventTitleInput.classList.add('error');
     }
+}
+
+function deleteEvent () {
+    events = events.filter(e => e.date !== clicked);
+    localStorage.setItem('events', JSON.stringify(events));
+    closeModal();
 }
