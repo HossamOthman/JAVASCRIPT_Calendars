@@ -42,10 +42,23 @@ document.getElementById('monthDisplay').innerText =
 for(let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daysSquare = document.createElement('div');
     daysSquare.classList.add('day');
+    const dayString = `${month + 1}/${i - paddingDays}/${year}`;
 
     if (i > paddingDays) {
         daysSquare.innerText = i - paddingDays;
-        daysSquare.addEventListener('click', () => openModal(`${month + 1}/${i - paddingDays}/${year}`));
+
+        const eventForDay = events.find(e => e.date === dayString);
+
+        if (eventForDay) {
+            const eventDiv = document.createElement('div');
+            eventDiv.classList.add('event');
+            eventDiv.innerText = eventForDay.title;
+            daysSquare.appendChild(eventDiv);
+        } else {
+            
+        }
+
+        daysSquare.addEventListener('click', () => openModal(dayString));
     } else {
         daysSquare.classList.add('padding');
     }
