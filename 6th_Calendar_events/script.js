@@ -6,6 +6,9 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
 const calendar = document.getElementById('calendar');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+const newEventModal = document.getElementById('newEventModal');
+const backDrop = document.getElementById('modalBackDrop');
+
 load();
 initBtns();
 
@@ -41,7 +44,7 @@ for(let i = 1; i <= paddingDays + daysInMonth; i++) {
 
     if (i > paddingDays) {
         daysSquare.innerText = i - paddingDays;
-        daysSquare.addEventListener('click', () => console.log('click'));
+        daysSquare.addEventListener('click', () => openModal(`${month + 1}/${i - paddingDays}/${year}`));
     } else {
         daysSquare.classList.add('padding');
     }
@@ -58,4 +61,17 @@ document.getElementById('backBtn').addEventListener('click', () => {
     nav--;
     load();
 });
+}
+function openModal(date){
+    clicked = date;
+
+    const eventForDay = events.find(e => e.date === clicked);
+
+    if (eventForDay) {
+        console.log('Event lready exists')
+    } else {
+        newEventModal.style.display = 'block';
+    }
+
+    backDrop.style.display = 'block';
 }
