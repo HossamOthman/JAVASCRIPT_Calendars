@@ -62,8 +62,9 @@ body {
     background-color: #d36c6c33;
   }
   
-  .day + #currentDay {
-    background-color:#e8f4fa;
+  #currentDay {
+    border: 1px solid #d36c6c;
+    background-color: #d36c6c33;
   }
   .event {
     font-size: 10px;

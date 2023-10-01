@@ -50,13 +50,15 @@ for(let i = 1; i <= paddingDays + daysInMonth; i++) {
 
         const eventForDay = events.find(e => e.date === dayString);
 
+        if ( i - paddingDays === day && nav === 0) {
+            daysSquare.id = 'currentDay';
+        }
+
         if (eventForDay) {
             const eventDiv = document.createElement('div');
             eventDiv.classList.add('event');
             eventDiv.innerText = eventForDay.title;
             daysSquare.appendChild(eventDiv);
-        } else {
-            
         }
 
         daysSquare.addEventListener('click', () => openModal(dayString));
